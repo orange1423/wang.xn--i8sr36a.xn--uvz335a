@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.th.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xn--uvz335a.xn--i8sr36a.wang","root":"/","scheme":"Pisces","version":"8.0.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="椭圆是啥？根据高中课本上的定义，它是平面上到两个定点（焦点）距离为常数的点的轨迹。但是不会真的有人认为我们的祖先给椭圆整了这么一个认真的数学定义吧。事实上椭圆就是个压扁了的圆嘛。 现在我们来压扁一个圆。嗯，首先找到受害者： \[ x^2 + y^2 &#x3D; 4 \] 如果要将其压扁之，我们可以试试，嗯，把它上面所有点的纵坐标变为原来的一半吧。当纵坐标变为原来一半方程仍然成立的话，我们可以找到新方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="压扁一个圆并走进椭圆世界">
+<meta property="og:url" content="https://笔记.橘子.wang/Ellipse-AnalyticGeometry-Math/">
+<meta property="og:site_name" content="橘子的笔记站">
+<meta property="og:description" content="椭圆是啥？根据高中课本上的定义，它是平面上到两个定点（焦点）距离为常数的点的轨迹。但是不会真的有人认为我们的祖先给椭圆整了这么一个认真的数学定义吧。事实上椭圆就是个压扁了的圆嘛。 现在我们来压扁一个圆。嗯，首先找到受害者： \[ x^2 + y^2 &#x3D; 4 \] 如果要将其压扁之，我们可以试试，嗯，把它上面所有点的纵坐标变为原来的一半吧。当纵坐标变为原来一半方程仍然成立的话，我们可以找到新方">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xn--uvz335a.xn--i8sr36a.wang/Ellipse-AnalyticGeometry-Math/压扁的圆.png">
+<meta property="article:published_time" content="2020-10-01T04:00:00.000Z">
+<meta property="article:modified_time" content="2020-10-01T07:22:35.977Z">
+<meta property="article:author" content="Orange">
+<meta property="article:tag" content="椭圆">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xn--uvz335a.xn--i8sr36a.wang/Ellipse-AnalyticGeometry-Math/压扁的圆.png">
+
+
+<link rel="canonical" href="https://笔记.橘子.wang/Ellipse-AnalyticGeometry-Math/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>压扁一个圆并走进椭圆世界 | 橘子的笔记站</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="橘子的笔记站" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">橘子的笔记站</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">橘子学习的地方</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="https://橘子.wang/" rel="noopener" target="_blank"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-笔记">
+
+    <a href="/" rel="section"><i class="fas fa-book fa-fw"></i>笔记</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A4%AD%E5%9C%86%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%A0%87%E5%87%86%E6%96%B9%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">椭圆的定义与标准方程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B-1-1"><span class="nav-number">1.1.</span> <span class="nav-text">例 1-1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B-1-2"><span class="nav-number">1.2.</span> <span class="nav-text">例 1-2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B-1-3"><span class="nav-number">1.3.</span> <span class="nav-text">例 1-3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A4%AD%E5%9C%86%E7%9A%84%E8%8C%83%E5%9B%B4%E4%B8%8E%E6%9C%80%E5%80%BC"><span class="nav-number">2.</span> <span class="nav-text">椭圆的范围与最值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B-2-1"><span class="nav-number">2.1.</span> <span class="nav-text">例 2-1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A4%AD%E5%9C%86%E7%9A%84%E7%A6%BB%E5%BF%83%E7%8E%87"><span class="nav-number">3.</span> <span class="nav-text">椭圆的离心率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B-3-1"><span class="nav-number">3.1.</span> <span class="nav-text">例 3-1</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Orange"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">Orange</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/orange1423" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;orange1423" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:orange@icedeer.net" title="E-Mail → mailto:orange@icedeer.net" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/272448431" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;272448431" rel="noopener" target="_blank"><i class="fa fa-play fa-fw"></i>Bilibili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/orange1423" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;orange1423" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.icedeer.net/" title="https:&#x2F;&#x2F;www.icedeer.net&#x2F;" rel="noopener" target="_blank">Icedeer</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://文件.橘子.wang/" title="https:&#x2F;&#x2F;xn--5nqy36c.xn--i8sr36a.wang&#x2F;" rel="noopener" target="_blank">Orange's Files</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mikutap.橘子.wang/" title="https:&#x2F;&#x2F;mikutap.xn--i8sr36a.wang&#x2F;" rel="noopener" target="_blank">MikuTap</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://github.orange0.workers.dev/" title="https:&#x2F;&#x2F;github.orange0.workers.dev&#x2F;" rel="noopener" target="_blank">GitHub Proxy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://ao3.orange0.workers.dev/" title="https:&#x2F;&#x2F;ao3.orange0.workers.dev&#x2F;" rel="noopener" target="_blank">Archive of Our Own Mirror</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://pages.橘子.wang/tools/microsoft-graph-api-auth" title="https:&#x2F;&#x2F;pages.xn--i8sr36a.wang&#x2F;tools&#x2F;microsoft-graph-api-auth" rel="noopener" target="_blank">Microsoft Graph Api Auth</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://笔记.橘子.wang/Ellipse-AnalyticGeometry-Math/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="Orange">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘子的笔记站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          压扁一个圆并走进椭圆世界
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-10-01 12:00:00 / 修改时间：15:22:35" itemprop="dateCreated datePublished" datetime="2020-10-01T12:00:00+08:00">2020-10-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E5%AD%A6/%E8%A7%A3%E6%9E%90%E5%87%A0%E4%BD%95/" itemprop="url" rel="index"><span itemprop="name">解析几何</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>椭圆是啥？根据高中课本上的定义，它是平面上到两个定点（焦点）距离为常数的点的轨迹。但是不会真的有人认为我们的祖先给椭圆整了这么一个认真的数学定义吧。事实上椭圆就是个压扁了的圆嘛。</p>
+<p>现在我们来压扁一个圆。嗯，首先找到受害者： <span class="math display">\[
+x^2 + y^2 = 4
+\]</span> 如果要将其压扁之，我们可以试试，嗯，把它上面所有点的纵坐标变为原来的一半吧。当纵坐标变为原来一半方程仍然成立的话，我们可以找到新方程：<span class="math inline">\(x^2 + 4y^2=4\)</span>. 仔细一看，这不是很容易就能化成原来课本上证明了半天的椭圆标准方程么： <span class="math display">\[
+\frac{x^2}{4}+y^2=1
+\]</span> <a id="more"></a></p>
+<p>我们来欣赏一下新的图形：</p>
+<p><img src="压扁的圆.png" /></p>
+<p>我们可以看到椭圆的长半轴即为原来圆的半径，短半轴则是被我们压过的半径。先辈们将方程化为： <span class="math display">\[
+\frac{x^2}{a^2}+\frac{y^2}{b^2}=1
+\]</span> 这样我们就能很好的找到椭圆的长轴长 <span class="math inline">\(a\)</span> 和短轴长 <span class="math inline">\(b\)</span> 了。另外我们可以看到圆与两个坐标轴各有两个交点，这就是它的顶点，x轴上的为 <span class="math inline">\((\pm a,0)\)</span>, y轴上的为<span class="math inline">\((0,\pm b)\)</span>.</p>
+<p>以上仅作为引子，接下来回到关于椭圆的实际内容。标准方程什么的我就不证明了，课本一翻都有。</p>
+<h2 id="椭圆的定义与标准方程">椭圆的定义与标准方程</h2>
+<p>椭圆的各参数的关系： <span class="math display">\[
+c^2=a^2-b^2
+\]</span> 椭圆的对称性：根据椭圆的标准方程 <span class="math display">\[
+\frac{x^2}{a^2}+\frac{y^2}{b^2}=1
+\]</span> 可知将 <span class="math inline">\(-x,-y\)</span> 代替 <span class="math inline">\(x,y\)</span> 时方程仍然成立，所以椭圆上的点关于 <span class="math inline">\(x\)</span> 轴，<span class="math inline">\(y\)</span> 轴和原点的对称点都在椭圆上。</p>
+<h3 id="例-1-1">例 1-1</h3>
+<ul>
+<li>求过点<span class="math inline">\((2,-\sqrt{2})\)</span>,<span class="math inline">\((-1,\frac{\sqrt{14}}{2})\)</span>两点的椭圆的标准方程</li>
+</ul>
+<p>没啥好说，待定系数法即可，设标准方程： <span class="math display">\[
+Ax^2+By^2=1
+\]</span> 代入两点坐标可得： <span class="math display">\[
+\left \{ 
+\begin{array}{c}
+4A+2B=1 \\ 
+A+\frac{7}{2}B=1
+\end{array}
+\right.
+\]</span> 解得： <span class="math display">\[
+A=\frac{1}{8},B=\frac{1}{4}
+\]</span> 那么它的标准方程就是： <span class="math display">\[
+\frac{x^2}{8}+\frac{y^2}{4}=1
+\]</span> 在这里我们一般设 <span class="math inline">\(A,B\)</span> 而不是长短轴长 <span class="math inline">\(a,b\)</span>. 这样可以避免讨论椭圆焦点的位置，并且计算更方便。</p>
+<h3 id="例-1-2">例 1-2</h3>
+<ul>
+<li>求过点<span class="math inline">\((\sqrt{3},-\sqrt{5})\)</span>并与<span class="math inline">\(\frac{y^2}{25}+\frac{x^2}{9}=1\)</span>有相同焦点的椭圆方程</li>
+</ul>
+<p>有相同焦点，我们知道它的焦距<span class="math inline">\(c\)</span>与这个椭圆相同，且焦点在y轴上。那么，<span class="math inline">\(c=4\)</span>，且椭圆过点，可得： <span class="math display">\[
+\left \{ 
+\begin{array}{c}
+\frac{3}{b^2}+\frac{5}{a^2}=1 \\ 
+c^2=a^2-b^2=4^2
+\end{array}
+\right.
+\]</span> 解得： <span class="math display">\[
+a^2=20,b^2=4
+\]</span> 由椭圆焦点在<span class="math inline">\(y\)</span>轴，可得椭圆方程可得： <span class="math display">\[
+\frac{y^2}{20}+\frac{x^2}{4}=1
+\]</span> 除此之外我们也可以用椭圆上点到两焦点距离之和为 <span class="math inline">\(2a\)</span> 来解出。这样可以避免求解方程，但有时当给出坐标带有根号时可能给计算带来困难。</p>
+<h3 id="例-1-3">例 1-3</h3>
+<ul>
+<li>P为椭圆<span class="math inline">\(\frac{x^2}{12}+\frac{y^2}{3}=1\)</span>的一点，<span class="math inline">\(F_1、F_2\)</span>是椭圆焦点，<span class="math inline">\(\angle F_1PF_2=60°\)</span>,求<span class="math inline">\(\triangle F_1PF_2\)</span>的面积</li>
+</ul>
+<p>解决这样的焦点三角形面积的时候可使用公式： <span class="math display">\[
+S=b^2\cdot tan \frac{\theta}{2}
+\]</span> 下面予以证明：</p>
+<p>设椭圆方程为： <span class="math display">\[
+\frac{x^2}{a^2}+\frac{x^2}{b^2}=1
+\]</span> <span class="math inline">\(M\)</span> 是椭圆上任意一点，则根据余弦定理有： <span class="math display">\[
+|F_1F_2|^2 = |MF_1|^2+|MF_2|^2-2|MF_1||MF_2|\cdot cos \theta
+\]</span> 根据椭圆的定义可知：<span class="math inline">\(|F_1F_2|^2=2c\)</span> 且 <span class="math inline">\(|MF_1|+|MF_2|=2a\)</span>，即： <span class="math display">\[
+(|MF_1|+|MF_2|)^2=|MF_1|^2+|MF_2|^2-2 \cdot |MF_1| \cdot |MF_2|=4a^2
+\]</span> 代入可得： <span class="math display">\[
+4c^2=4a^2-2|MF_1|\cdot|MF_2|-2|MF_1|\cdot|MF_2|\cdot cos \theta
+\]</span> 化简得： <span class="math display">\[
+|MF_1| \cdot |MF_2|=\frac{2b^2}{1+cos \theta}
+\]</span> 由三角形面积公式： <span class="math display">\[
+S=\frac{1}{2} \cdot |MF_1| \cdot |MF_2| \cdot sin \theta
+\]</span> 得： <span class="math display">\[
+S=b^2 \cdot tan \frac{\theta}{2}
+\]</span></p>
+<h2 id="椭圆的范围与最值">椭圆的范围与最值</h2>
+<p>椭圆上到中心距离最小的点是短轴的两个端点，最大的是长轴的两个端点，椭圆上的点到焦点的距离范围为<span class="math inline">\([a-c,a+c]\)</span>，下面予以证明。</p>
+<h3 id="例-2-1">例 2-1</h3>
+<p>设椭圆方程为： <span class="math display">\[
+\frac{x^2}{a^2}+\frac{y^2}{b^2}=1
+\]</span> 焦点为 <span class="math inline">\(F(c,0)\)</span>，椭圆上任意一点 <span class="math inline">\(P(x,y)\)</span>.</p>
+<p>根据两点距离公式有： <span class="math display">\[
+|PF|=\sqrt{(x-c)^2+y^2}
+\]</span> 设 <span class="math inline">\(sin\theta=\frac{y}{b},cos\theta=\frac{x}{b}\)</span>，则： <span class="math display">\[
+|PF|=\sqrt{(asin\theta-c)^2+b^2cos^2\theta}
+\]</span> 由 <span class="math inline">\(b^2=a^2-c^2\)</span>，得： <span class="math display">\[
+|PF|=\sqrt{(asin\theta-c)^2+(a^2-c^2)cos^2\theta}
+\]</span> 化简得： <span class="math display">\[
+|PF|=a-csin\theta
+\]</span> 由 <span class="math inline">\(sinθ\in[-1,1]\)</span>，可得 <span class="math inline">\(|PF|\in[a-c,a+c]\)</span>.</p>
+<h2 id="椭圆的离心率">椭圆的离心率</h2>
+<p>椭圆的离心率 <span class="math inline">\(e\)</span> 可以帮助我们了解椭圆的扁平程度。它代表了长轴一定时焦点离开中心的程度。它是焦距与长轴长的比，计算公式如下： <span class="math display">\[
+e=\frac{c}{a}
+\]</span> 另外如果我们知道 <span class="math inline">\(a,b\)</span>，也可以用以下公式： <span class="math display">\[
+e^2=(\frac{c}{a})^2=\frac{a^2-b^2}{a^2}=1-\frac{b^2}{a^2}
+\]</span> 求 e 时我们通常需要寻找 <span class="math inline">\(a,b,c\)</span> 之间的关系，并将其整理为关于 <span class="math inline">\(a,c\)</span> 的齐次方程来求解。</p>
+<h3 id="例-3-1">例 3-1</h3>
+<ul>
+<li>设 <span class="math inline">\(F_1,F_2\)</span> 是椭圆E:<span class="math inline">\(\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\)</span>的左右焦点，<span class="math inline">\(P\)</span> 为直线 <span class="math inline">\(x=\frac{3a}{2}\)</span> 上的一点，<span class="math inline">\(\triangle F_2PF_1\)</span> 是底角为 <span class="math inline">\(30^\circ\)</span> 等腰三角形，求 <span class="math inline">\(E\)</span> 的离心率。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Orange
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://笔记.橘子.wang/Ellipse-AnalyticGeometry-Math/" title="压扁一个圆并走进椭圆世界">https://笔记.橘子.wang/Ellipse-AnalyticGeometry-Math/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%A4%AD%E5%9C%86/" rel="tag"># 椭圆</a>
+          </div>
+
+        
+
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orange</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+  <script data-pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+    <div class="pjax">
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+    </div>
+</body>
+</html>

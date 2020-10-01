@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>橘子的笔记站</title>
+  
+  <subtitle>橘子学习的地方</subtitle>
+  <link href="https://笔记.橘子.wang/atom.xml" rel="self"/>
+  
+  <link href="https://笔记.橘子.wang/"/>
+  <updated>2020-10-01T07:22:35.977Z</updated>
+  <id>https://笔记.橘子.wang/</id>
+  
+  <author>
+    <name>Orange</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>压扁一个圆并走进椭圆世界</title>
+    <link href="https://笔记.橘子.wang/Ellipse-AnalyticGeometry-Math/"/>
+    <id>https://笔记.橘子.wang/Ellipse-AnalyticGeometry-Math/</id>
+    <published>2020-10-01T04:00:00.000Z</published>
+    <updated>2020-10-01T07:22:35.977Z</updated>
+    
+    <content type="html"><![CDATA[<p>椭圆是啥？根据高中课本上的定义，它是平面上到两个定点（焦点）距离为常数的点的轨迹。但是不会真的有人认为我们的祖先给椭圆整了这么一个认真的数学定义吧。事实上椭圆就是个压扁了的圆嘛。</p><p>现在我们来压扁一个圆。嗯，首先找到受害者： <span class="math display">\[x^2 + y^2 = 4\]</span> 如果要将其压扁之，我们可以试试，嗯，把它上面所有点的纵坐标变为原来的一半吧。当纵坐标变为原来一半方程仍然成立的话，我们可以找到新方程：<span class="math inline">\(x^2 + 4y^2=4\)</span>. 仔细一看，这不是很容易就能化成原来课本上证明了半天的椭圆标准方程么： <span class="math display">\[\frac{x^2}{4}+y^2=1\]</span> <a id="more"></a></p><p>我们来欣赏一下新的图形：</p><p><img src="压扁的圆.png" /></p><p>我们可以看到椭圆的长半轴即为原来圆的半径，短半轴则是被我们压过的半径。先辈们将方程化为： <span class="math display">\[\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\]</span> 这样我们就能很好的找到椭圆的长轴长 <span class="math inline">\(a\)</span> 和短轴长 <span class="math inline">\(b\)</span> 了。另外我们可以看到圆与两个坐标轴各有两个交点，这就是它的顶点，x轴上的为 <span class="math inline">\((\pm a,0)\)</span>, y轴上的为<span class="math inline">\((0,\pm b)\)</span>.</p><p>以上仅作为引子，接下来回到关于椭圆的实际内容。标准方程什么的我就不证明了，课本一翻都有。</p><h2 id="椭圆的定义与标准方程">椭圆的定义与标准方程</h2><p>椭圆的各参数的关系： <span class="math display">\[c^2=a^2-b^2\]</span> 椭圆的对称性：根据椭圆的标准方程 <span class="math display">\[\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\]</span> 可知将 <span class="math inline">\(-x,-y\)</span> 代替 <span class="math inline">\(x,y\)</span> 时方程仍然成立，所以椭圆上的点关于 <span class="math inline">\(x\)</span> 轴，<span class="math inline">\(y\)</span> 轴和原点的对称点都在椭圆上。</p><h3 id="例-1-1">例 1-1</h3><ul><li>求过点<span class="math inline">\((2,-\sqrt{2})\)</span>,<span class="math inline">\((-1,\frac{\sqrt{14}}{2})\)</span>两点的椭圆的标准方程</li></ul><p>没啥好说，待定系数法即可，设标准方程： <span class="math display">\[Ax^2+By^2=1\]</span> 代入两点坐标可得： <span class="math display">\[\left \{ \begin{array}{c}4A+2B=1 \\ A+\frac{7}{2}B=1\end{array}\right.\]</span> 解得： <span class="math display">\[A=\frac{1}{8},B=\frac{1}{4}\]</span> 那么它的标准方程就是： <span class="math display">\[\frac{x^2}{8}+\frac{y^2}{4}=1\]</span> 在这里我们一般设 <span class="math inline">\(A,B\)</span> 而不是长短轴长 <span class="math inline">\(a,b\)</span>. 这样可以避免讨论椭圆焦点的位置，并且计算更方便。</p><h3 id="例-1-2">例 1-2</h3><ul><li>求过点<span class="math inline">\((\sqrt{3},-\sqrt{5})\)</span>并与<span class="math inline">\(\frac{y^2}{25}+\frac{x^2}{9}=1\)</span>有相同焦点的椭圆方程</li></ul><p>有相同焦点，我们知道它的焦距<span class="math inline">\(c\)</span>与这个椭圆相同，且焦点在y轴上。那么，<span class="math inline">\(c=4\)</span>，且椭圆过点，可得： <span class="math display">\[\left \{ \begin{array}{c}\frac{3}{b^2}+\frac{5}{a^2}=1 \\ c^2=a^2-b^2=4^2\end{array}\right.\]</span> 解得： <span class="math display">\[a^2=20,b^2=4\]</span> 由椭圆焦点在<span class="math inline">\(y\)</span>轴，可得椭圆方程可得： <span class="math display">\[\frac{y^2}{20}+\frac{x^2}{4}=1\]</span> 除此之外我们也可以用椭圆上点到两焦点距离之和为 <span class="math inline">\(2a\)</span> 来解出。这样可以避免求解方程，但有时当给出坐标带有根号时可能给计算带来困难。</p><h3 id="例-1-3">例 1-3</h3><ul><li>P为椭圆<span class="math inline">\(\frac{x^2}{12}+\frac{y^2}{3}=1\)</span>的一点，<span class="math inline">\(F_1、F_2\)</span>是椭圆焦点，<span class="math inline">\(\angle F_1PF_2=60°\)</span>,求<span class="math inline">\(\triangle F_1PF_2\)</span>的面积</li></ul><p>解决这样的焦点三角形面积的时候可使用公式： <span class="math display">\[S=b^2\cdot tan \frac{\theta}{2}\]</span> 下面予以证明：</p><p>设椭圆方程为： <span class="math display">\[\frac{x^2}{a^2}+\frac{x^2}{b^2}=1\]</span> <span class="math inline">\(M\)</span> 是椭圆上任意一点，则根据余弦定理有： <span class="math display">\[|F_1F_2|^2 = |MF_1|^2+|MF_2|^2-2|MF_1||MF_2|\cdot cos \theta\]</span> 根据椭圆的定义可知：<span class="math inline">\(|F_1F_2|^2=2c\)</span> 且 <span class="math inline">\(|MF_1|+|MF_2|=2a\)</span>，即： <span class="math display">\[(|MF_1|+|MF_2|)^2=|MF_1|^2+|MF_2|^2-2 \cdot |MF_1| \cdot |MF_2|=4a^2\]</span> 代入可得： <span class="math display">\[4c^2=4a^2-2|MF_1|\cdot|MF_2|-2|MF_1|\cdot|MF_2|\cdot cos \theta\]</span> 化简得： <span class="math display">\[|MF_1| \cdot |MF_2|=\frac{2b^2}{1+cos \theta}\]</span> 由三角形面积公式： <span class="math display">\[S=\frac{1}{2} \cdot |MF_1| \cdot |MF_2| \cdot sin \theta\]</span> 得： <span class="math display">\[S=b^2 \cdot tan \frac{\theta}{2}\]</span></p><h2 id="椭圆的范围与最值">椭圆的范围与最值</h2><p>椭圆上到中心距离最小的点是短轴的两个端点，最大的是长轴的两个端点，椭圆上的点到焦点的距离范围为<span class="math inline">\([a-c,a+c]\)</span>，下面予以证明。</p><h3 id="例-2-1">例 2-1</h3><p>设椭圆方程为： <span class="math display">\[\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\]</span> 焦点为 <span class="math inline">\(F(c,0)\)</span>，椭圆上任意一点 <span class="math inline">\(P(x,y)\)</span>.</p><p>根据两点距离公式有： <span class="math display">\[|PF|=\sqrt{(x-c)^2+y^2}\]</span> 设 <span class="math inline">\(sin\theta=\frac{y}{b},cos\theta=\frac{x}{b}\)</span>，则： <span class="math display">\[|PF|=\sqrt{(asin\theta-c)^2+b^2cos^2\theta}\]</span> 由 <span class="math inline">\(b^2=a^2-c^2\)</span>，得： <span class="math display">\[|PF|=\sqrt{(asin\theta-c)^2+(a^2-c^2)cos^2\theta}\]</span> 化简得： <span class="math display">\[|PF|=a-csin\theta\]</span> 由 <span class="math inline">\(sinθ\in[-1,1]\)</span>，可得 <span class="math inline">\(|PF|\in[a-c,a+c]\)</span>.</p><h2 id="椭圆的离心率">椭圆的离心率</h2><p>椭圆的离心率 <span class="math inline">\(e\)</span> 可以帮助我们了解椭圆的扁平程度。它代表了长轴一定时焦点离开中心的程度。它是焦距与长轴长的比，计算公式如下： <span class="math display">\[e=\frac{c}{a}\]</span> 另外如果我们知道 <span class="math inline">\(a,b\)</span>，也可以用以下公式： <span class="math display">\[e^2=(\frac{c}{a})^2=\frac{a^2-b^2}{a^2}=1-\frac{b^2}{a^2}\]</span> 求 e 时我们通常需要寻找 <span class="math inline">\(a,b,c\)</span> 之间的关系，并将其整理为关于 <span class="math inline">\(a,c\)</span> 的齐次方程来求解。</p><h3 id="例-3-1">例 3-1</h3><ul><li>设 <span class="math inline">\(F_1,F_2\)</span> 是椭圆E:<span class="math inline">\(\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\)</span>的左右焦点，<span class="math inline">\(P\)</span> 为直线 <span class="math inline">\(x=\frac{3a}{2}\)</span> 上的一点，<span class="math inline">\(\triangle F_2PF_1\)</span> 是底角为 <span class="math inline">\(30^\circ\)</span> 等腰三角形，求 <span class="math inline">\(E\)</span> 的离心率。</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;椭圆是啥？根据高中课本上的定义，它是平面上到两个定点（焦点）距离为常数的点的轨迹。但是不会真的有人认为我们的祖先给椭圆整了这么一个认真的数学定义吧。事实上椭圆就是个压扁了的圆嘛。&lt;/p&gt;
+&lt;p&gt;现在我们来压扁一个圆。嗯，首先找到受害者： &lt;span class=&quot;math display&quot;&gt;\[
+x^2 + y^2 = 4
+\]&lt;/span&gt; 如果要将其压扁之，我们可以试试，嗯，把它上面所有点的纵坐标变为原来的一半吧。当纵坐标变为原来一半方程仍然成立的话，我们可以找到新方程：&lt;span class=&quot;math inline&quot;&gt;\(x^2 + 4y^2=4\)&lt;/span&gt;. 仔细一看，这不是很容易就能化成原来课本上证明了半天的椭圆标准方程么： &lt;span class=&quot;math display&quot;&gt;\[
+\frac{x^2}{4}+y^2=1
+\]&lt;/span&gt;</summary>
+    
+    
+    
+    <category term="数学" scheme="https://笔记.橘子.wang/categories/%E6%95%B0%E5%AD%A6/"/>
+    
+    <category term="解析几何" scheme="https://笔记.橘子.wang/categories/%E6%95%B0%E5%AD%A6/%E8%A7%A3%E6%9E%90%E5%87%A0%E4%BD%95/"/>
+    
+    
+    <category term="椭圆" scheme="https://笔记.橘子.wang/tags/%E6%A4%AD%E5%9C%86/"/>
+    
+  </entry>
+  
+</feed>
